@@ -44,9 +44,10 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             Controls.Add(label1);
             Name = "UserControlBlink";
-            Size = new Size(143, 100);
+            Size = new Size(140, 110);
             ResumeLayout(false);
             PerformLayout();
         }
