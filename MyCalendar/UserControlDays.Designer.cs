@@ -1,6 +1,6 @@
 ﻿namespace MyCalendar
 {
-    partial class UserControlBlink
+    partial class UserControlDays
     {
         /// <summary> 
         /// 필수 디자이너 변수입니다.
@@ -28,18 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            lbdays = new Label();
             SuspendLayout();
             // 
-            // UserControlBlink
+            // lbdays
+            // 
+            lbdays.AutoSize = true;
+            lbdays.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbdays.Location = new Point(8, 7);
+            lbdays.Name = "lbdays";
+            lbdays.Size = new Size(54, 19);
+            lbdays.TabIndex = 0;
+            lbdays.Text = "label1";
+            // 
+            // UserControlDays
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveBorder;
-            Name = "UserControlBlink";
+            BackColor = Color.White;
+            Controls.Add(lbdays);
+            Name = "UserControlDays";
             Size = new Size(140, 100);
+            Load += UserControlDays_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label lbdays;
     }
 }
