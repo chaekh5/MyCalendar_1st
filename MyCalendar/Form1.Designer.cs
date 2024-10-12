@@ -67,7 +67,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("맑은 고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
-            label1.Location = new Point(65, 61);
+            label1.Location = new Point(79, 61);
             label1.Name = "label1";
             label1.Size = new Size(79, 25);
             label1.TabIndex = 2;
@@ -78,7 +78,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("맑은 고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
-            label2.Location = new Point(207, 61);
+            label2.Location = new Point(214, 61);
             label2.Name = "label2";
             label2.Size = new Size(86, 25);
             label2.TabIndex = 2;
@@ -100,7 +100,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("맑은 고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
-            label4.Location = new Point(505, 61);
+            label4.Location = new Point(498, 61);
             label4.Name = "label4";
             label4.Size = new Size(116, 25);
             label4.TabIndex = 2;
@@ -111,7 +111,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("맑은 고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
-            label5.Location = new Point(684, 61);
+            label5.Location = new Point(670, 61);
             label5.Name = "label5";
             label5.Size = new Size(95, 25);
             label5.TabIndex = 2;
@@ -122,7 +122,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("맑은 고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
-            label6.Location = new Point(842, 61);
+            label6.Location = new Point(821, 61);
             label6.Name = "label6";
             label6.Size = new Size(66, 25);
             label6.TabIndex = 2;
@@ -133,7 +133,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("맑은 고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
-            label7.Location = new Point(971, 61);
+            label7.Location = new Point(943, 61);
             label7.Name = "label7";
             label7.Size = new Size(91, 25);
             label7.TabIndex = 2;
@@ -142,6 +142,7 @@
             // 
             // daycontainer
             // 
+            daycontainer.BackColor = Color.Transparent;
             daycontainer.Location = new Point(50, 99);
             daycontainer.Name = "daycontainer";
             daycontainer.Size = new Size(1047, 640);
@@ -181,6 +182,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.MistyRose;
             ClientSize = new Size(1134, 811);
             Controls.Add(btn_today);
             Controls.Add(title_year);
@@ -196,7 +198,7 @@
             Controls.Add(btn_Previous);
             Controls.Add(daycontainer);
             Name = "Form1";
-            Text = "Form1";
+            Text = "My Little Little Jian's Calendar";
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();

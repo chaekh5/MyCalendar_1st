@@ -60,6 +60,11 @@ namespace MyCalendar
 
             // Get First day of the Month
             DateTime start_of_month = new DateTime(year, month, 1);
+            // Get Today's Date
+            int nowDate = DateTime.Now.Day;
+            int nowMonth = DateTime.Now.Month;
+            int nowYear = DateTime.Now.Year;
+
 
             // Get the count of days of the month
             int days = DateTime.DaysInMonth(year, month);
@@ -75,12 +80,20 @@ namespace MyCalendar
                 daycontainer.Controls.Add(ucblank);
             }
 
+
             // Create Usercontrol for days
             for (int i = 1; i <= days; i++)
             {
                 UserControlDays ucDays = new UserControlDays();
                 ucDays.days(i);
+
                 daycontainer.Controls.Add(ucDays);
+
+                // 오늘 날짜 색상 하이라이트
+                if ((month == nowMonth) && (year == nowYear) && (i == nowDate))
+                {
+                    ucDays.BackColor = Color.LightYellow;
+                }
             }
         }
 

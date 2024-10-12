@@ -8,24 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MyCalendar
+namespace MyCalendar.Ind.DateEvent
 {
-    public partial class UserControlDays : UserControl
+    public partial class EventView : UserControl
     {
-        public UserControlDays()
+        public EventView()
         {
             InitializeComponent();
         }
 
-        private void UserControlDays_Load(object sender, EventArgs e)
+        private void EventView_Load(object sender, EventArgs e)
         {
 
         }
-        public void days(int numday)
-        {
-            lbdays.Text = numday +"";
-        }
-            
-
     }
 }

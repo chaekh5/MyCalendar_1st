@@ -1,6 +1,6 @@
-﻿namespace MyCalendar
+﻿namespace MyCalendar.Ind.DateEvent
 {
-    partial class UserControlDays
+    partial class EventView
     {
         /// <summary> 
         /// 필수 디자이너 변수입니다.
@@ -28,34 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lbdays = new Label();
+            label1 = new Label();
             SuspendLayout();
             // 
-            // lbdays
+            // label1
             // 
-            lbdays.AutoSize = true;
-            lbdays.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbdays.Location = new Point(8, 7);
-            lbdays.Name = "lbdays";
-            lbdays.Size = new Size(54, 19);
-            lbdays.TabIndex = 0;
-            lbdays.Text = "label1";
+            label1.AutoSize = true;
+            label1.Location = new Point(124, 128);
+            label1.Name = "label1";
+            label1.Size = new Size(31, 15);
+            label1.TabIndex = 0;
+            label1.Text = "안녕";
             // 
-            // UserControlDays
+            // EventView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            Controls.Add(lbdays);
-            Name = "UserControlDays";
-            Size = new Size(140, 100);
-            Load += UserControlDays_Load;
+            Controls.Add(label1);
+            Name = "EventView";
+            Size = new Size(278, 280);
+            Load += EventView_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label lbdays;
+        private Label label1;
     }
 }
