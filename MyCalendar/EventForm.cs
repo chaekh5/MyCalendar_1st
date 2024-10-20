@@ -13,7 +13,8 @@ namespace MyCalendar
 {
     public partial class EventForm : Form
     {
-        
+        string eventdate;          
+
 
         public EventForm()
         {
@@ -22,8 +23,15 @@ namespace MyCalendar
 
         private void EventForm_Load(object sender, EventArgs e)
         {
-            EventView eventView = new EventView();
+           
+            
 
+        }
+
+        public void GetDate(string date)
+        {
+            eventdate = date;
+            textBox1.Text = eventdate;
         }
     }
 }

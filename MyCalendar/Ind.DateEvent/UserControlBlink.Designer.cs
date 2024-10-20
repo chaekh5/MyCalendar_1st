@@ -34,7 +34,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.MistyRose;
+            BackColor = Color.FromArgb(207, 255, 229);
             Name = "UserControlBlink";
             Size = new Size(140, 100);
             ResumeLayout(false);

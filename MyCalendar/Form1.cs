@@ -25,7 +25,7 @@ namespace MyCalendar
             month = now.Month;
             year = now.Year;
 
-            display_calendar(month, year);
+            display_calendar(month, year);            
         }
 
         private void btn_Next_Click(object sender, EventArgs e)

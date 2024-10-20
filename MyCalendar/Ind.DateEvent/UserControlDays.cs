@@ -16,6 +16,8 @@ namespace MyCalendar
     {
 
         Testform testform = new Testform();
+        EventView eventview = new EventView();
+        string date;
 
         public UserControlDays()
         {
@@ -29,22 +31,35 @@ namespace MyCalendar
         public void days(int numday)
         {
             lbdays.Text = numday + "";
+            date = lbdays.Text;
         }
 
 
 
         private void UserControlDays_mouseHover(object sender, EventArgs e)
         {
+            Thread.Sleep(500);
             Testform testform_pop = new Testform();
-            testform = testform_pop;            
+            EventView eventView_pop = new EventView();
+            testform = testform_pop;
+            eventView_pop = eventview;
+            
             testform.Show();
+            eventView_pop.Show();
         }
 
         private void UserControlDays_mouseLeave(object sender, EventArgs e)
         {
-            Thread.Sleep(200);
-            testform.Close();        
+            Thread.Sleep(400);
+            testform.Close();
 
+        }
+
+        private void UserControlDays_Click(object sender, EventArgs e)
+        {
+            EventForm eventForm = new EventForm();
+            eventForm.GetDate(date);            
+            eventForm.Show();
         }
     }
 }
