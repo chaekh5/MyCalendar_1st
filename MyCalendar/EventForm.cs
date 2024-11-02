@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,11 @@ namespace MyCalendar
 {
     public partial class EventForm : Form
     {
-        string eventdate;          
-
+        string s_eventdate;
+        // 전역변수(static)은 new 인스턴스 참조 필요없음
+        int get_month = Form1.month;
+        int get_year = Form1.year;
+        int get_day;
 
         public EventForm()
         {
@@ -23,15 +27,65 @@ namespace MyCalendar
 
         private void EventForm_Load(object sender, EventArgs e)
         {
-           
-            
+
+
 
         }
 
-        public void GetDate(string date)
+        public void GetDate(int date)
         {
-            eventdate = date;
-            textBox1.Text = eventdate;
+            get_day = date;
+            s_eventdate = get_year.ToString() + "년" + get_month.ToString() + "월" + get_day.ToString() + "일";
+            textBox1.Text = s_eventdate;
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_event_save_KeyDown(object sender, KeyEventArgs e)
+        {
+        }
+
+        private void btn_event_save_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+
+        }
+
+        private void btn_event_save_Click(object sender, EventArgs e)
+        {
+            // 데이터베이스에 이벤트 입력하기
+            try
+            {
+                // DB연결
+                SQLiteConnection conn = new SQLiteConnection("Data Source = D:/PROJECT/CS_PROJECT/MyCalendar_sln/db/jians_db.db");
+                conn.Open();
+                // row 추가
+                string event_Text = textBox2.Text;
+                // INSERT 쿼리문 생성
+                string sql = "INSERT INTO schedule (Year, Month, Day, Event) values (" + get_year + "," + get_month + "," + get_day + "," + "'" + event_Text + "'" + ");";
+                SQLiteCommand command = new SQLiteCommand(sql, conn);
+                int result = command.ExecuteNonQuery();
+
+                MessageBox.Show("저장되었습니다. 까꿍");
+
+                string test_sql = "select * from schedule";
+                SQLiteCommand cmd = new SQLiteCommand(test_sql, conn);
+                SQLiteDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    MessageBox.Show(rdr["Year"] + " " + rdr["Month"] + " " + rdr["Day"] + " " + rdr["Event"]);
+                }
+                rdr.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
