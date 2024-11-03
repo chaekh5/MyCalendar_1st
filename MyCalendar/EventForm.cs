@@ -39,22 +39,22 @@ namespace MyCalendar
             textBox1.Text = s_eventdate;
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_event_save_KeyDown(object sender, KeyEventArgs e)
-        {
-        }
-
-        private void btn_event_save_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-
-        }
-
         private void btn_event_save_Click(object sender, EventArgs e)
+        {
+            input_DB_data();
+        }
+
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                input_DB_data();
+            }
+            return;
+
+        }
+
+        private void input_DB_data()
         {
             // 데이터베이스에 이벤트 입력하기
             try
@@ -71,21 +71,23 @@ namespace MyCalendar
 
                 MessageBox.Show("저장되었습니다. 까꿍");
 
-                string test_sql = "select * from schedule";
-                SQLiteCommand cmd = new SQLiteCommand(test_sql, conn);
-                SQLiteDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    MessageBox.Show(rdr["Year"] + " " + rdr["Month"] + " " + rdr["Day"] + " " + rdr["Event"]);
-                }
-                rdr.Close();
+                //string test_sql = "select * from schedule";
+                //SQLiteCommand cmd = new SQLiteCommand(test_sql, conn);
+                //SQLiteDataReader rdr = cmd.ExecuteReader();
+                //while (rdr.Read())
+                //{
+                //    MessageBox.Show(rdr["Year"] + " " + rdr["Month"] + " " + rdr["Day"] + " " + rdr["Event"]);
+                //}
+                //rdr.Close();
 
-
+                this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
+
     }
 }
