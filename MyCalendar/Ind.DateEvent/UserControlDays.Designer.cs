@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             lbdays = new Label();
+            listView1 = new ListView();
             SuspendLayout();
             // 
             // lbdays
@@ -41,15 +42,25 @@
             lbdays.TabIndex = 0;
             lbdays.Text = "label1";
             // 
+            // listView1
+            // 
+            listView1.Location = new Point(3, 29);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(134, 68);
+            listView1.TabIndex = 2;
+            listView1.UseCompatibleStateImageBehavior = false;
+            // 
             // UserControlDays
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
+            Controls.Add(listView1);
             Controls.Add(lbdays);
             Name = "UserControlDays";
             Size = new Size(140, 100);
             Load += UserControlDays_Load;
+            Click += UserControlDays_Click;
             MouseLeave += UserControlDays_mouseLeave;
             MouseHover += UserControlDays_mouseHover;
             ResumeLayout(false);
@@ -59,5 +70,6 @@
         #endregion
 
         private Label lbdays;
+        private ListView listView1;
     }
 }

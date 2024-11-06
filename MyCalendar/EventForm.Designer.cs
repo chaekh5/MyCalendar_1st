@@ -39,6 +39,7 @@
             // 
             textBox1.Location = new Point(42, 37);
             textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
             textBox1.Size = new Size(260, 23);
             textBox1.TabIndex = 0;
             // 
@@ -48,6 +49,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(260, 23);
             textBox2.TabIndex = 0;
+            textBox2.KeyDown += textBox2_KeyDown;
             // 
             // label1
             // 
@@ -75,6 +77,7 @@
             btn_event_save.TabIndex = 3;
             btn_event_save.Text = "저장";
             btn_event_save.UseVisualStyleBackColor = true;
+            btn_event_save.Click += btn_event_save_Click;
             // 
             // EventForm
             // 
@@ -82,8 +85,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(344, 183);
             Controls.Add(btn_event_save);
-            Controls.Add(label2);
-            Controls.Add(label1);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Name = "EventForm";

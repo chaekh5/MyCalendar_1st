@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             btn_Previous = new Button();
             btn_Next = new Button();
             label1 = new Label();
@@ -41,6 +42,8 @@
             title_month = new Label();
             title_year = new Label();
             btn_today = new Button();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btn_Previous
@@ -178,12 +181,25 @@
             btn_today.UseVisualStyleBackColor = true;
             btn_today.Click += btn_today_Click;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.BackgroundImageLayout = ImageLayout.None;
+            pictureBox1.Cursor = Cursors.No;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(250, 652);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(164, 147);
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.MistyRose;
+            BackColor = Color.FromArgb(207, 255, 229);
             ClientSize = new Size(1134, 811);
+            Controls.Add(pictureBox1);
             Controls.Add(btn_today);
             Controls.Add(title_year);
             Controls.Add(title_month);
@@ -200,6 +216,7 @@
             Name = "Form1";
             Text = "My Little Little Jian's Calendar";
             Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -218,5 +235,6 @@
         private Button btn_Previous;
         private Label title_year;
         private Button btn_today;
+        private PictureBox pictureBox1;
     }
 }

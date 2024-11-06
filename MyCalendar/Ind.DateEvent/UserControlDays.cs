@@ -9,10 +9,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace MyCalendar
 {
     public partial class UserControlDays : UserControl
     {
+
+        Testform testform = new Testform();
+        EventView eventview = new EventView();
+        int date;
+
         public UserControlDays()
         {
             InitializeComponent();
@@ -25,33 +31,35 @@ namespace MyCalendar
         public void days(int numday)
         {
             lbdays.Text = numday + "";
+            date = numday;
         }
 
-
-        private void UserControlDays_mouseMove(object sender, MouseEventArgs e)
-        {
-            //EventView eventview = new EventView();
-
-            //eventview.Show();
-
-            Testform testform = new Testform();
-
-            testform.Show();
-        }
 
 
         private void UserControlDays_mouseHover(object sender, EventArgs e)
         {
-            Testform testform = new Testform();
-
+            Thread.Sleep(1000);
+            Testform testform_pop = new Testform();
+            EventView eventView_pop = new EventView();
+            testform = testform_pop;
+            eventView_pop = eventview;
+            
             testform.Show();
+            eventView_pop.Show();
         }
 
         private void UserControlDays_mouseLeave(object sender, EventArgs e)
         {
-            Testform testform = new Testform();
-
+            Thread.Sleep(300);
             testform.Close();
+
+        }
+
+        private void UserControlDays_Click(object sender, EventArgs e)
+        {
+            EventForm eventForm = new EventForm();
+            eventForm.GetDate(date);            
+            eventForm.ShowDialog();
         }
     }
 }
