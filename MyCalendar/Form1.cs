@@ -1,3 +1,4 @@
+using System.Data;
 using System.Data.SQLite;
 
 namespace MyCalendar
@@ -77,41 +78,71 @@ namespace MyCalendar
             // 데이터베이스에서 이벤트데이터 가져오기
             try
             {
+                uint DB_day;                  
+                string? DB_event;   // null 허용 한정자
+
+                List<(uint Day, string Event)> dayEventList = new List<(uint Day, string Event)>();
+
                 // DB연결
                 SQLiteConnection conn = new SQLiteConnection("Data Source = D:/PROJECT/CS_PROJECT/MyCalendar_sln/db/jians_db.db");
                 conn.Open();
+
+                // 쿼리문
+                string sql = "SELECT * FROM schedule WHERE Year=" + year + " AND " + "Month=" + month;
+                SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+
+                var reader = cmd.ExecuteReader();                
+
+                // 이달의 이벤트만 추출해서 딕셔너리 저장하기
+                while(reader.Read())
+                {
+                    DB_day = Convert.ToUInt32(reader["Day"].ToString());
+                    DB_event = reader["Event"].ToString();
+                    dayEventList.Add((DB_day, DB_event));
+
                     
+                }
+
+                // 리스트를 배열로 변환
+                var dayEventArray = dayEventList.ToArray();
+
+                //first lets create a blank usercontrol
+                for (int i = 1; i < day_of_the_week; i++)
+                {
+                    UserControlBlink ucblank = new UserControlBlink();
+                    daycontainer.Controls.Add(ucblank);
+                }
+
+
+                // Create Usercontrol for days
+                for (int i = 1; i <= days; i++)
+                {
+                    UserControlDays ucDays = new UserControlDays();
+                    ucDays.days(i);
+                    daycontainer.Controls.Add(ucDays);
+
+                    foreach(var item in dayEventArray)
+                    {
+                        if(item.Day == i)
+                        {
+                            ucDays.Add_event(item.Event);
+                        }
+                    }
+
+                    // 오늘 날짜 색상 하이라이트
+                    if ((month == nowMonth) && (year == nowYear) && (i == nowDate))
+                    {
+                        ucDays.BackColor = Color.LightYellow;
+                    }
+                }
+
+                conn.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
 
-
-            //first lets create a blank usercontrol
-            for (int i = 1; i < day_of_the_week; i++)
-            {
-                UserControlBlink ucblank = new UserControlBlink();
-                daycontainer.Controls.Add(ucblank);
-            }
-
-
-            // Create Usercontrol for days
-            for (int i = 1; i <= days; i++)
-            {
-                UserControlDays ucDays = new UserControlDays();
-                ucDays.days(i);
-
-                daycontainer.Controls.Add(ucDays);
-
-                // 오늘 날짜 색상 하이라이트
-                if ((month == nowMonth) && (year == nowYear) && (i == nowDate))
-                {
-                    ucDays.BackColor = Color.LightYellow;
-                }
-            }
-
-            
         }
 
         private void btn_today_Click(object sender, EventArgs e)
