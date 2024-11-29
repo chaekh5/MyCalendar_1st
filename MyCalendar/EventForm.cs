@@ -80,7 +80,11 @@ namespace MyCalendar
                 //}
                 //rdr.Close();
 
-                this.Close();
+                conn.Close();
+
+                this.Close();                
+                
+
             }
             catch (Exception ex)
             {

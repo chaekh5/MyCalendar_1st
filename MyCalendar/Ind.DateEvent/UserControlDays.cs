@@ -34,6 +34,11 @@ namespace MyCalendar
             date = numday;
         }
 
+        public void Add_event(string event_name)
+        {
+            string add_event_item = "♪ " + event_name + "\n";
+            event_list.Items.Add(add_event_item);
+        }
 
 
         private void UserControlDays_mouseHover(object sender, EventArgs e)
@@ -43,7 +48,7 @@ namespace MyCalendar
             EventView eventView_pop = new EventView();
             testform = testform_pop;
             eventView_pop = eventview;
-            
+
             testform.Show();
             eventView_pop.Show();
         }
@@ -58,7 +63,14 @@ namespace MyCalendar
         private void UserControlDays_Click(object sender, EventArgs e)
         {
             EventForm eventForm = new EventForm();
-            eventForm.GetDate(date);            
+            eventForm.GetDate(date);
+            eventForm.ShowDialog();
+        }
+
+        private void event_list_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            EventForm eventForm = new EventForm();
+            eventForm.GetDate(date);
             eventForm.ShowDialog();
         }
     }
