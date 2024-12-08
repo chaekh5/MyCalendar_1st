@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace MyCalendar
@@ -17,7 +19,11 @@ namespace MyCalendar
 
         Testform testform = new Testform();
         EventView eventview = new EventView();
+
+        int select_year = Form1.year;
+        int select_month = Form1.month;
         int date;
+
 
         public UserControlDays()
         {
@@ -28,7 +34,7 @@ namespace MyCalendar
         {
 
         }
-        public void days(int numday)
+        public void Days(int numday)
         {
             lbdays.Text = numday + "";
             date = numday;
@@ -36,7 +42,7 @@ namespace MyCalendar
 
         public void Add_event(string event_name)
         {
-            string add_event_item = "♪ " + event_name + "\n";
+            string add_event_item = "♬ " + event_name + "\n";
             event_list.Items.Add(add_event_item);
         }
 
@@ -69,9 +75,50 @@ namespace MyCalendar
 
         private void event_list_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            EventForm eventForm = new EventForm();
-            eventForm.GetDate(date);
-            eventForm.ShowDialog();
+            if(event_list.SelectedItem != null)
+            {
+                string? selected_value = event_list.SelectedItem.ToString();
+                if (selected_value.Length > 0)
+                {
+                    selected_value = selected_value.Substring(2);
+                    selected_value = selected_value.TrimEnd('\n');
+                }
+                // 해당아이템 삭제 여부 질문
+
+
+                // 아이템 삭제
+                try
+                {
+                    // DB연결
+                    SQLiteConnection conn = new SQLiteConnection("Data Source = D:/PROJECT/CS_PROJECT/MyCalendar_sln/db/jians_db.db");
+                    conn.Open();
+                    // DELETE 쿼리문 생성
+                    string sql = "DELETE FROM schedule WHERE Year = " + select_year +" AND Month = " + select_month + " AND Day = " + date + " AND Event = '" + (selected_value ) +"';";
+                    SQLiteCommand command = new SQLiteCommand(sql, conn);
+                    int result = command.ExecuteNonQuery();
+
+                    MessageBox.Show("삭제되었습니다. 까꿍");
+
+                    conn.Close();
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }        
+            else
+            {
+                EventForm eventForm = new EventForm();
+                eventForm.GetDate(date);
+                eventForm.ShowDialog();
+            }
+            
+
         }
+
+
+
     }
 }

@@ -69,7 +69,7 @@ namespace MyCalendar
             int nowYear = DateTime.Now.Year;
 
 
-            // Get the count of days of the month
+            // Get the count of Days of the month
             int days = DateTime.DaysInMonth(year, month);
 
             // Convert the start_of_month to integer
@@ -81,6 +81,7 @@ namespace MyCalendar
                 uint DB_day;                  
                 string? DB_event;   // null 허용 한정자
 
+                // 날짜와 이벤트 리스트 선언
                 List<(uint Day, string Event)> dayEventList = new List<(uint Day, string Event)>();
 
                 // DB연결
@@ -93,14 +94,12 @@ namespace MyCalendar
 
                 var reader = cmd.ExecuteReader();                
 
-                // 이달의 이벤트만 추출해서 딕셔너리 저장하기
+                // 이달의 이벤트만 추출해서 리스트 저장하기
                 while(reader.Read())
                 {
                     DB_day = Convert.ToUInt32(reader["Day"].ToString());
                     DB_event = reader["Event"].ToString();
-                    dayEventList.Add((DB_day, DB_event));
-
-                    
+                    dayEventList.Add((DB_day, DB_event));                    
                 }
 
                 // 리스트를 배열로 변환
@@ -114,11 +113,11 @@ namespace MyCalendar
                 }
 
 
-                // Create Usercontrol for days
+                // Create Usercontrol for Days
                 for (int i = 1; i <= days; i++)
                 {
                     UserControlDays ucDays = new UserControlDays();
-                    ucDays.days(i);
+                    ucDays.Days(i);
                     daycontainer.Controls.Add(ucDays);
 
                     foreach(var item in dayEventArray)
@@ -149,5 +148,6 @@ namespace MyCalendar
         {
             displayToday();
         }
+
     }
 }

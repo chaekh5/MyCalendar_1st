@@ -33,6 +33,7 @@
             label1 = new Label();
             label2 = new Label();
             btn_event_save = new Button();
+            btn_event_delete = new Button();
             SuspendLayout();
             // 
             // textBox1
@@ -75,20 +76,33 @@
             btn_event_save.Name = "btn_event_save";
             btn_event_save.Size = new Size(75, 23);
             btn_event_save.TabIndex = 3;
-            btn_event_save.Text = "저장";
+            btn_event_save.Text = "추가";
             btn_event_save.UseVisualStyleBackColor = true;
             btn_event_save.Click += btn_event_save_Click;
+            // 
+            // btn_event_delete
+            // 
+            btn_event_delete.BackColor = Color.Transparent;
+            btn_event_delete.ForeColor = Color.MediumVioletRed;
+            btn_event_delete.Location = new Point(42, 136);
+            btn_event_delete.Name = "btn_event_delete";
+            btn_event_delete.Size = new Size(108, 23);
+            btn_event_delete.TabIndex = 4;
+            btn_event_delete.Text = "이벤트 삭제";
+            btn_event_delete.UseVisualStyleBackColor = false;
+            btn_event_delete.Click += btn_event_delete_Click;
             // 
             // EventForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(344, 183);
+            Controls.Add(btn_event_delete);
             Controls.Add(btn_event_save);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Name = "EventForm";
-            Text = "이벤트 추가";
+            Text = "이벤트 추가 / 삭제";
             Load += EventForm_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -101,5 +115,6 @@
         private Label label1;
         private Label label2;
         private Button btn_event_save;
+        private Button btn_event_delete;
     }
 }

@@ -32,6 +32,7 @@ namespace MyCalendar
 
         }
 
+
         public void GetDate(int date)
         {
             get_day = date;
@@ -70,7 +71,6 @@ namespace MyCalendar
                 int result = command.ExecuteNonQuery();
 
                 MessageBox.Show("저장되었습니다. 까꿍");
-
                 //string test_sql = "select * from schedule";
                 //SQLiteCommand cmd = new SQLiteCommand(test_sql, conn);
                 //SQLiteDataReader rdr = cmd.ExecuteReader();
@@ -82,8 +82,8 @@ namespace MyCalendar
 
                 conn.Close();
 
-                this.Close();                
-                
+                this.Close();
+
 
             }
             catch (Exception ex)
@@ -92,6 +92,13 @@ namespace MyCalendar
             }
         }
 
+        private void btn_event_delete_Click(object sender, EventArgs e)
+        {
+            EventDeleteForm eventDeleteForm = new EventDeleteForm();
+            eventDeleteForm.GetDate(s_eventdate);
+            eventDeleteForm.ShowDialog();
+            
 
+        }
     }
 }
