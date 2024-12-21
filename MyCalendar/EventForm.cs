@@ -14,6 +14,7 @@ namespace MyCalendar
 {
     public partial class EventForm : Form
     {
+        private Form1 form;
         string s_eventdate;
         // 전역변수(static)은 new 인스턴스 참조 필요없음
         int get_month = Form1.month;
@@ -25,10 +26,14 @@ namespace MyCalendar
             InitializeComponent();
         }
 
+        public EventForm(Form1 form)
+        {
+            InitializeComponent();
+            this.form = form;
+        }
+
         private void EventForm_Load(object sender, EventArgs e)
         {
-
-
 
         }
 
@@ -83,7 +88,8 @@ namespace MyCalendar
                 conn.Close();
 
                 this.Close();
-
+                
+                Program.Display_calendar(get_month, get_year, form);
 
             }
             catch (Exception ex)

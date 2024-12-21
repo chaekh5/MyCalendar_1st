@@ -16,18 +16,26 @@ namespace MyCalendar
 {
     public partial class UserControlDays : UserControl
     {
-
+        
         Testform testform = new Testform();
         EventView eventview = new EventView();
 
         int select_year = Form1.year;
         int select_month = Form1.month;
         int date;
+        private Form1 form;
 
+       
 
         public UserControlDays()
         {
             InitializeComponent();
+        }
+
+        public UserControlDays(Form1 form)
+        {
+            InitializeComponent();
+            this.form = form;
         }
 
         private void UserControlDays_Load(object sender, EventArgs e)
@@ -68,7 +76,7 @@ namespace MyCalendar
 
         private void UserControlDays_Click(object sender, EventArgs e)
         {
-            EventForm eventForm = new EventForm();
+            EventForm eventForm = new EventForm(form);
             eventForm.GetDate(date);
             eventForm.ShowDialog();
         }
@@ -101,6 +109,7 @@ namespace MyCalendar
 
                     conn.Close();
 
+                    Program.Display_calendar(select_month, select_year, form);
 
                 }
                 catch (Exception ex)
@@ -110,7 +119,7 @@ namespace MyCalendar
             }        
             else
             {
-                EventForm eventForm = new EventForm();
+                EventForm eventForm = new EventForm(form);
                 eventForm.GetDate(date);
                 eventForm.ShowDialog();
             }
