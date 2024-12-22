@@ -1,5 +1,6 @@
 ﻿using MyCalendar.Ind.DateEvent;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Diagnostics;
 
 
 namespace MyCalendar
@@ -50,28 +52,27 @@ namespace MyCalendar
 
         public void Add_event(string event_name)
         {
-            string add_event_item = "♬ " + event_name + "\n";
+            string add_event_item = "☆ " + event_name + "\n";            
             event_list.Items.Add(add_event_item);
         }
 
 
         private void UserControlDays_mouseHover(object sender, EventArgs e)
         {
-            Thread.Sleep(1000);
-            Testform testform_pop = new Testform();
-            EventView eventView_pop = new EventView();
-            testform = testform_pop;
-            eventView_pop = eventview;
+            //Thread.Sleep(1000);
+            //Testform testform_pop = new Testform();
+            //EventView eventView_pop = new EventView();
+            //testform = testform_pop;
+            //eventView_pop = eventview;
 
-            testform.Show();
-            eventView_pop.Show();
+            //testform.Show();
+            //eventView_pop.Show();
         }
 
         private void UserControlDays_mouseLeave(object sender, EventArgs e)
         {
-            Thread.Sleep(300);
-            testform.Close();
-
+            //Thread.Sleep(300);
+            //testform.Close();
         }
 
         private void UserControlDays_Click(object sender, EventArgs e)
@@ -97,11 +98,16 @@ namespace MyCalendar
                 // 아이템 삭제
                 try
                 {
+                    // DB경로 획득
+                    StreamReader sr = new(Directory.GetCurrentDirectory() + "/config/DB_path.config");
+                    string? db_path = sr.ReadLine();
+                    sr.Close();
+
                     // DB연결
-                    SQLiteConnection conn = new SQLiteConnection("Data Source = D:/PROJECT/CS_PROJECT/MyCalendar_sln/db/jians_db.db");
+                    SQLiteConnection conn = new SQLiteConnection("Data Source = " + db_path);
                     conn.Open();
                     // DELETE 쿼리문 생성
-                    string sql = "DELETE FROM schedule WHERE Year = " + select_year +" AND Month = " + select_month + " AND Day = " + date + " AND Event = '" + (selected_value ) +"';";
+                    string sql = "DELETE FROM schedule WHERE Year = " + select_year + " AND Month = " + select_month + " AND Day = " + date + " AND Event = '" + (selected_value) + "';";
                     SQLiteCommand command = new SQLiteCommand(sql, conn);
                     int result = command.ExecuteNonQuery();
 
@@ -119,6 +125,7 @@ namespace MyCalendar
             }        
             else
             {
+
                 EventForm eventForm = new EventForm(form);
                 eventForm.GetDate(date);
                 eventForm.ShowDialog();
@@ -127,6 +134,11 @@ namespace MyCalendar
 
         }
 
+        public void UserControlDays_Today_highlight()
+        {
+            this.BackColor = Color.LightYellow;
+            this.event_list.BackColor = Color.LightYellow;
+        }
 
 
     }

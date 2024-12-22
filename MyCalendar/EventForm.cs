@@ -65,8 +65,13 @@ namespace MyCalendar
             // 데이터베이스에 이벤트 입력하기
             try
             {
+                // DB경로 획득
+                StreamReader sr = new(Directory.GetCurrentDirectory() + "/config/DB_path.config");
+                string? db_path = sr.ReadLine();
+                sr.Close();
+
                 // DB연결
-                SQLiteConnection conn = new SQLiteConnection("Data Source = D:/PROJECT/CS_PROJECT/MyCalendar_sln/db/jians_db.db");
+                SQLiteConnection conn = new SQLiteConnection("Data Source = " + db_path);
                 conn.Open();
                 // row 추가
                 string event_Text = textBox2.Text;

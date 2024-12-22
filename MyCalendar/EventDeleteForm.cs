@@ -12,8 +12,6 @@
         public void Load_event_list()
         {
             UserControlDays userControlDays = new UserControlDays();
-
-
         }
 
         public void GetDate(string date)

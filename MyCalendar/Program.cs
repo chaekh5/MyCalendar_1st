@@ -92,7 +92,9 @@ namespace MyCalendar
                     // 오늘 날짜 색상 하이라이트
                     if ((month == nowMonth) && (year == nowYear) && (i == nowDate))
                     {
-                        ucDays.BackColor = Color.LightYellow;
+                        ucDays.UserControlDays_Today_highlight();
+
+
                     }
                 }
 
